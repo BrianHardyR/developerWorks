@@ -466,7 +466,7 @@ public class MainActivity extends Activity
         final String METHOD = "connectApplicationClient(): ";
         try {
             Context context = getApplicationContext();
-            SSLSocketFactory factory = getSSLSocketFactory(context);
+//            SSLSocketFactory factory = getSSLSocketFactory(context);
             getApplicationClient().setCallback(getMonitorCallback());
 
             String username = getApplicationProperties().getApiKey(); // Username is the API Key
