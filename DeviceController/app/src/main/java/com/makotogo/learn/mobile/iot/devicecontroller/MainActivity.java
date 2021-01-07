@@ -48,6 +48,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.net.URI;
 import java.security.KeyStore;
 import java.util.ArrayDeque;
 import java.util.HashMap;
@@ -437,13 +438,24 @@ public class MainActivity extends Activity
      * @return ApplicationClient - the ApplicationClient
      */
     private ApplicationClient createApplicationClient() {
-        String mqttServerProtocol =  getApplicationProperties().getMqttServerProtocol();
+        String mqttServerProtocol =  "ws";
+//                getApplicationProperties().getMqttServerProtocol();
         String orgId = getApplicationProperties().getOrgId();
-        String mqttServerHostName = getApplicationProperties().getMqttServerHostName();
-        String mqttServerPort = getApplicationProperties().getMqttServerPort();
+        String mqttServerHostName = "messaging.internetofthings.ibmcloud.com";
+//                getApplicationProperties().getMqttServerHostName();
+        String mqttServerPort = "80";
+//                getApplicationProperties().getMqttServerPort();
 
         String serverUri = mqttServerProtocol + "://" + orgId + "." + mqttServerHostName + ":" + mqttServerPort;
 
+        try {
+            URI vURI = new URI(serverUri);
+            if ("ws".equals(vURI.getScheme())){
+                Log.e("TEST","web socket");
+            }
+        }catch (Exception e){
+            Log.e("TEST",e.getLocalizedMessage());
+        }
         return new ApplicationClient(getApplicationContext(), serverUri, generateApplicationClientId(orgId));
     }
 
@@ -464,9 +476,9 @@ public class MainActivity extends Activity
             options.setCleanSession(true);
             options.setUserName(username);
             options.setPassword(password);
-            if (factory != null) {
-                options.setSocketFactory(factory);
-            }
+//            if (factory != null) {
+//                options.setSocketFactory(factory);
+//            }
             IMqttToken token = getApplicationClient().connect(options, context, new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
@@ -759,7 +771,7 @@ public class MainActivity extends Activity
         // If the current size is at the limit, then remove the oldest message
         /// before adding a new one
         int notificationsSize = getNotifications().size();
-        if (notificationsSize >= getApplicationProperties().getMaxNotificationCount()) {
+        if (notificationsSize >= 100) {
             getNotifications().removeLast();
         }
         // Add this message to the deque

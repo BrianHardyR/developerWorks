@@ -19,6 +19,7 @@ package com.makotogo.learn.mobile.iot.devicecontroller;
 import android.content.Context;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 
 /**
  * Client abstraction for connecting to MQTT server.
@@ -31,3 +32,4 @@ public class ApplicationClient extends MqttAndroidClient {
         super(context, serverURI, clientId);
     }
 }
+

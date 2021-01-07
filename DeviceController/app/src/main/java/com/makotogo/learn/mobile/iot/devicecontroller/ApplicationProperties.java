@@ -41,15 +41,15 @@ public class ApplicationProperties extends Properties {
 
     // The first-class properties supported by this class
     // Each has a getter and setter.
-    private static final String MQTT_SERVER_HOST_NAME = "mqtt.server.host.name";
-    private static final String MQTT_SERVER_PROTOCOL = "mqtt.server.protocol";
-    private static final String MQTT_SERVER_PORT = "mqtt.server.port";
+    private static final String MQTT_SERVER_HOST_NAME = "pref_key_mqtt_host_name";
+    private static final String MQTT_SERVER_PROTOCOL = "pref_key_mqtt_protocol";
+    private static final String MQTT_SERVER_PORT = "pref_key_mqtt_host_port";
     private static final String ORG_ID = "org.id";
     private static final String API_KEY = "api.key";
     private static final String AUTH_TOKEN = "auth.token";
     private static final String CONTROLLER_DEVICE_TYPE = "controller.device.type";
     private static final String CONTROLLER_DEVICE_ID = "controller.device.id";
-    private static final String MAX_NOTIFICATION_COUNT = "max.notification.count";
+    private static final String MAX_NOTIFICATION_COUNT = "pref_key_max_notifications";
 
     /**
      * The application context. Needed by SharedPreferences.
@@ -145,7 +145,8 @@ public class ApplicationProperties extends Properties {
     }
 
     public Integer getMaxNotificationCount() {
-        return fetchIntegerProperty(MAX_NOTIFICATION_COUNT);
+        return 100;
+//                fetchIntegerProperty(MAX_NOTIFICATION_COUNT);
     }
 
     public void setMaxNotificationCount(Integer maxNotificationCount) {
