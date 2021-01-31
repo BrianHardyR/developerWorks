@@ -476,6 +476,9 @@ public class MainActivity extends Activity
             options.setCleanSession(true);
             options.setUserName(username);
             options.setPassword(password);
+            /**
+             * Removed to disable ssl
+             */
 //            if (factory != null) {
 //                options.setSocketFactory(factory);
 //            }
